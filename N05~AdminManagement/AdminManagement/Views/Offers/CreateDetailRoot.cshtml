@@ -1,0 +1,68 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "CreateDetailSub";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<ProductCategoriesRoot> listprocate = ViewBag.ProCategoryRoot;
+    List<UserCategory> listusercate = ViewBag.UserCategory;
+    List<Offer> listoffer = ViewBag.Offer;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>
+            Tạo chi tiết khuyến mãi theo loại sản phẩm cha
+            <span style="float:right">@Html.ActionLink("Nhập theo sản phẩm", "CreateDetail", null, new { @class = "btn btn-primary btn-rect" })</span>
+            <span style="float:right">@Html.ActionLink("Nhập theo loại sản phẩm con", "CreateDetailSub", null, new { @class = "btn btn-success btn-rect" }) &nbsp;</span>
+        </h3>
+    </div>
+</div>
+<hr />
+<form action="~/Offers/CreateDetailRoot" method="post">
+    <table>
+        <tr>
+            <td><label class="control-label">Tên khuyến mãi  &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+            <td>
+                <select class="form-control" name="idoffer">
+                    @foreach (Offer o in listoffer)
+                    {
+                        <option value="@o.ID_Offers">@o.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label class="control-label">Loại sản phẩm cha &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+            <td>
+                <select class="form-control" name="idprocateroot">
+                    @foreach (ProductCategoriesRoot pc in listprocate)
+                    {
+                        <option value="@pc.ID_ProductCategoriesRoot">@pc.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label class="control-label">Loại khách hàng  &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+            <td>
+                <select class="form-control" name="idusercate">
+                    @foreach (UserCategory uc in listusercate)
+                    {
+                        <option value="@uc.ID_UserCategories">@uc.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label class="control-label">Mức giảm giá  &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+            <td><input type="text" name="discount" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Tạo" class="btn btn-primary" style="width:6em" />
+                @Html.ActionLink("Hủy bỏ", "Index", new { }, new { @class = "btn btn-danger", @style = "width:7em" })
+            </td>
+
+        </tr>
+    </table>
+</form>

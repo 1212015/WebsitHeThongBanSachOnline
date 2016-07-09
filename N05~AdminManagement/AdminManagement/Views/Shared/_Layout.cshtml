@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <title>@ViewBag.Title</title>
+    <!-- global styles -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/plugins/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/css/main.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/css/theme.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/css/MoneAdmin.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/plugins/Font-Awesome/css/font-awesome.css" />
+    <!-- end global styles -->
+    <!-- page level styles -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/plugins/dataTables/dataTables.bootstrap.css" />
+    <!-- end page level styles -->    
+</head>
+<body class="padTop53">
+    <!-- main wrapper -->
+    <div id="wrap">
+        <div id="top">
+            <nav class="navbar navbar-inverse navbar-fixed-top" style="padding-top:10px">
+                <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                    <i class="icon-align-justify"></i>
+                </a>
+                <!-- logo section -->
+                <header class="navbar-header">
+                    <a href="~/Home/" class="navbar-brand">
+                        <h4 style="font-family:'Times New Roman';color:#006600;font-weight:bold">TRANG QUẢN LÝ</h4>                                                
+                    </a>                    
+                </header>
+                <!-- end logo section -->
+                <h5>@Html.ActionLink("Đăng xuất", "Logout", "Account", null, new { @style = "float:right; margin-right:20px; color:red" })</h5>
+            </nav>
+        </div>
+        <!-- menu section -->
+        <div id="left">
+            <div class="media user-media well-small">
+                @{ 
+                   string imgemployee = (string)Session["IDEmp"];
+                   imgemployee += ".jpg";
+                }
+                <a class="user-link" href="#">
+                    <img class="media-object img-thumbnail user-img" alt="User Picture" src="~/Content/employee/img/@imgemployee" width="64" height="64" />
+                </a>
+                <br />
+                <div class="media-body">
+                    <h5 class="media-heading"> @{ Write((string)Session["FirstName"]); }</h5>
+                    <ul class="list-unstyled user-info">
+                        <li>
+                            <a class="btn btn-success btn-xs btn-circle" style="width:10px;height:12px"></a> Online
+                        </li>
+                    </ul>
+                </div>
+                <br />
+            </div>
+            <ul id="menu" class="collapse">
+                <li class="panel">
+                    <a href="~/Home/">
+                        <i class="icon-table"></i> Bảng Điều Khiển
+                    </a>
+                </li>
+                <li class="panel">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#product-nav">
+                        <i class="icon-th"></i> Quản Lý Sản Phẩm
+                        <span class="pull-right">
+                            <i class="icon-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="product-nav">
+                        <li class=""><a href="~/Products/"><i class="icon-angle-right"></i> Danh sách sản phẩm</a></li>
+                        <li class""><a href="~/CategoryRoot/"><i class="icon-angle-right"></i> Quản lý loại sản phẩm</a></li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#order-nav">
+                        <i class="icon-th"></i> Quản Lý Đơn Đặt Hàng
+                        <span class="pull-right">
+                            <i class="icon-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="order-nav">
+                        <li class=""><a href="~/Orders/"><i class="icon-angle-right"></i> Danh sách đơn đặt hàng</a></li>
+                        <li class=""><a href="~/TopicDetails"><i class="icon-angle-right"></i> Xử lý phản hồi</a></li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <a href="~/Users/">
+                        <i class="icon-user"></i> Quản Lý Khách Hàng
+                    </a>
+                </li>
+                <li class="panle">
+                    <a href="~/Employees">
+                        <i class="icon-user-md"></i> Quản Lý Nhân Viên
+                    </a>
+                </li>
+                <li class="panel">
+                    <a href="http://localhost:9666">
+                        <i class="icon-group"></i> Quản Lý Diễn Đàn
+                    </a>
+                </li>
+                <li class="panel">
+                    <a href="~/Offers/">
+                        <i class="icon-align-justify"></i> Quản Lý Khuyến Mãi
+                    </a>
+                </li>
+                <li class="panel">
+                    <a href="~/Discounts/">
+                        <i class="icon-money"></i> Quản Lý Giảm Giá
+                    </a>
+                </li>
+                <li class="panel">
+                    <a href="~/SendMail/">
+                        <i class="icon-mail-forward"></i> Gửi Email
+                    </a>
+                </li>
+                <li class="panel">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#report-nav">
+                        <i class="icon-renminbi"></i> Báo Cáo
+                        <span class="pull-right">
+                            <i class="icon-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="report-nav">
+                        <li class=""><a href="~/Report/"><i class="icon-angle-right"></i> Báo cáo doanh thu</a></li>
+                        <li class=""><a href="~/Report/TopCustomers"><i class="icon-angle-right"></i> Top 10 khách hàng</a></li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <a href="~/Statistics/">
+                        <i class="icon-bar-chart"></i> Thống kê
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- end menu section -->
+        <!-- page content -->
+        <div id="content">
+            <div class="inner" style="min-height:700px">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 style="color:#003366; font-weight:bold">@ViewBag.PageLevelName</h3>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end main wrapper -->
+    <!-- footer -->
+    <div id="footer">
+        <p>&copy; 2015 - PTUD HTTT HD Nhóm 05</p>
+    </div>
+    <!-- end footer -->
+    <!-- global scripts -->
+    <script src="@Url.Content("~/Content/")admin/plugins/jquery-2.0.3.min.js"></script>
+    <script src="@Url.Content("~/Content/")admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/Content/")admin/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <!-- end global scritps -->
+    <!-- page level scripts -->
+    <script src="@Url.Content("~/Content/")admin/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="@Url.Content("~/Content/")admin/plugins/dataTables/dataTables.bootstrap.js"></script>    
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+    <!-- end page level scripts -->
+</body>
+</html>

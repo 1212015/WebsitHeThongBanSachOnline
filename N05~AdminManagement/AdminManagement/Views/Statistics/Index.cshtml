@@ -1,0 +1,145 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "Thống kê doanh thu bán hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Statistics> statistics = ViewBag.statistics;
+    int? id = ViewBag.id;
+    string msg = ViewBag.msg;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            @Ajax.ActionLink("Theo tháng", "Index", new { id = 1 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+            @Ajax.ActionLink("Theo năm", "Index", new { id = 2 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+        </div>
+
+        <div class="col-lg-12" id="choice">
+            @if (id == 1)
+            {
+                <hr/>
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showstatistics" }))
+                {
+                    <input type="hidden" name="id" value="1" />
+                    <table>
+                        <tr>
+                            <td><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td><select class="form-control" name="year1">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+            @if (id == 2)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showstatistics" }))
+                {
+                    <input type="hidden" name="id" value="2" />
+                    <table>
+                        <tr>
+                            <td><label>Từ năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td>
+                                <select class="form-control" name="year1">
+                                    @for (int i = DateTime.Now.Year - 1; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Đến năm </label></td>
+                            <td>
+                                <select class="form-control" name="year2">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" id="showstatistics">
+            @if (msg != null)
+            {
+                <hr />
+                <h3>@msg</h3>
+            }
+            @if (statistics.Count != 0)
+            {
+                <hr />
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @if (id == 1)
+                        {
+                            <span>Thống kê doanh thu năm @ViewBag.year1</span>
+                        }
+                        @if (id == 2)
+                        {
+                            <span>Thống kê doanh thu từ năm @ViewBag.year1 đến năm @ViewBag.year2</span>
+                        }
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-responsive table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        @if (id == 1)
+                                        {
+                                            <th style="vertical-align:middle; text-align:center">Tháng</th>
+                                        }
+                                        @if (id == 2)
+                                        {
+                                            <th style="vertical-align:middle; text-align:center">Năm</th>
+                                        }                                        
+                                        <th style="vertical-align:middle; text-align:center">Doanh thu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int total = 0; }
+                                    @foreach (Statistics i in statistics)
+                                    {
+                                        <tr>
+                                            <td style="vertical-align:middle; text-align:center">@i.key</td>
+                                            @if (id == 1)
+                                            {
+                                                <td style="vertical-align:middle; text-align:center">@Html.ActionLink(i.value.ToString(), "CheckStatistics", new { id = id, month = i.key, year = ViewBag.year1 })</td>
+                                            }
+                                            @if (id == 2)
+                                            {
+                                                <td style="vertical-align:middle; text-align:center">@Html.ActionLink(i.value.ToString(), "CheckStatistics", new { id = id, year = i.key })</td>
+                                            }                                            
+                                        </tr>
+                                        total += i.value;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr />
+                        <span style="float:right"><label>Tổng Cộng:</label><input class="form-control" style="text-align:right" disabled value="@total VND" /></span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

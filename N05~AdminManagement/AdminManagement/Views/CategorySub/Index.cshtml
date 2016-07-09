@@ -1,0 +1,57 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "Quản lý loại sản phẩm con";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<CategorySub> list = ViewBag.categorysub;
+}
+
+<div class="container">
+    <div class="row">
+        <span style="float:right">@Html.ActionLink("Tạo loại sản phẩm con mới", "Create", new { }, new { @class = "btn btn-primary btn-rect" })</span>
+        <span style="float:right">@Html.ActionLink("Xem danh sách loại sản phẩm cha", "Index", "CategoryRoot", new { }, new { @class = "btn btn-danger btn-rect" }) &nbsp;</span>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>Danh sách loại sản phẩm con</span>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive" id="table-category">
+                    <table class="table table-bordered table-hover table-striped" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align:middle; text-align:center"></th>
+                                <th style="vertical-align:middle; text-align:center">Mã Loại</th>
+                                <th style="vertical-align:middle; text-align:center">Tên Loại</th>
+                                <th style="vertical-align:middle; text-align:center">Tên Loại Cha</th>
+                                <th style="vertical-align:middle; text-align:center">Ngày Tạo</th>
+                                <th style="vertical-align:middle; text-align:center">Ngày Cập Nhật</th>
+                                <th style="vertical-align:middle; text-align:center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (CategorySub i in list)
+                            {
+                                <tr>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        <img src="~/Content/categorysub/img/@i.Image" alt="Hình ảnh" width="48" height="48" />
+                                    </td>
+                                    <td style="vertical-align:middle; text-align:center">@i.ID</td>
+                                    <td style="vertical-align:middle">@Html.ActionLink(i.Name, "Details", new { id = i.ID })</td>
+                                    <td style="vertical-align:middle">@i.RName</td>
+                                    <td style="vertical-align:middle; text-align:center">@i.DateAdded</td>
+                                    <td style="vertical-align:middle; text-align:center">@i.DateUpdated</td>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = i.ID }, new { @style = "width:7em", @class = "btn btn-success btn-rect" })
+                                        @Ajax.ActionLink("Xóa", "Delete", new { id = i.ID }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-category" }, new { @class = "btn btn-danger btn-rect", @style = "width:7em" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

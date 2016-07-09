@@ -1,0 +1,57 @@
+﻿@model AdminManagement.Models.TopicDetail
+
+@{
+    ViewBag.Title = "Chi tiết bài đăng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h4>Chi tiết bài đăng</h4>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th style="width:20%"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="vertical-align:middle"><label>Mã bài đăng</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.TopicID)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Tiêu đề</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.ShortDetail)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Mô tả</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Detail)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Trạng thái</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Topic.TopicStatus.Name)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Email người đăng</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Topic.User.Email)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Ngày đăng</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateAdded)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Ngày cập nhật</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateUpdated)</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID_TopicDetails }, new { @class = "btn btn-danger", @style = "width:7em" })
+        @Html.ActionLink("Trở lại", "Index", new { }, new { @class = "btn btn-primary", @style = "width:7em" })
+    </p>
+</div>

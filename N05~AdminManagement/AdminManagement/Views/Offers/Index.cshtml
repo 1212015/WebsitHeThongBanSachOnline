@@ -1,0 +1,80 @@
+﻿@model IEnumerable<AdminManagement.Models.Offer>
+
+@{
+    ViewBag.Title = "Quản Lý Khuyến Mãi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align:right"><a href="~/Offers/Create" class="btn btn-primary btn-rect">Tạo hoạt động khuyến mãi</a></div>
+<div style="text-align:right"><a href="~/Offers/CreateDetail" class="btn btn-primary btn-rect">Tạo chi tiết khuyến mãi</a></div>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Hoạt động khuyến mãi
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive" id="table-orders">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th style="vertical-align:middle; text-align:center">
+                            Tên hoạt động
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            ngày bắt đầu
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            ngày kết thúc
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Trạng thái
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Ngày tạo
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Ngày cập nhật
+                        </th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="vertical-align:middle; text-align:center"></td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.OfferStatus.Name)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.DateAdded)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.DateUpdated)
+                            </td>
+
+                            <td style="vertical-align:middle">
+                                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ID_Offers }, new { @style = "width:7em", @class = "btn btn-success btn-rect" }) <br />
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.ID_Offers }, new { @style = "width:7em", @class = "btn btn-info btn-rect" }) <br />
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@model AdminManagement.Models.Employee
+
+@{
+    ViewBag.Title = "Chi tiết thông tin nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Chi tiết thông tin nhân viên</h3>
+<hr/>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered table-hover table-striped">
+            <tbody>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td>@Html.DisplayFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <td><label>Mật khẩu</label></td>
+                    <td>@Html.DisplayFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td><label>Tên</label></td>
+                    <td>@Html.DisplayFor(model => model.FirstName)</td>
+                </tr>
+                <tr>
+                    <td><label>Họ</label></td>
+                    <td>@Html.DisplayFor(model => model.LastName)</td>
+                </tr>
+                <tr>
+                    <td><label>CMND</label></td>
+                    <td>@Html.DisplayFor(model => model.IDNo)</td>
+                </tr>
+                <tr>
+                    <td><label>Giới tính</label></td>
+                    <td>@Html.DisplayFor(model => model.Gender)</td>
+                </tr>
+                <tr>
+                    <td><label>Ngày sinh</label></td>
+                    <td>@Html.DisplayFor(model => model.Birthday)</td>
+                </tr>
+                <tr>
+                    <td><label>Số ĐT</label></td>
+                    <td>@Html.DisplayFor(model => model.Phone)</td>
+                </tr>
+                <tr>
+                    <td><label>Địa chỉ</label></td>
+                    <td>@Html.DisplayFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <td><label>Lương</label></td>
+                    <td>@Html.DisplayFor(model => model.Salary)</td>
+                </tr>
+                <tr>
+                    <td><label>Phòng ban</label></td>
+                    <td>@Html.DisplayFor(model => model.Department.Name)</td>
+                </tr>
+                <tr>
+                    <td><label>Chức vụ</label></td>
+                    <td>@Html.DisplayFor(model => model.Grade.Name)</td>
+                </tr>
+                <tr>
+                    <td><label>Ngày thêm vào</label></td>
+                    <td>@Html.DisplayFor(model => model.DateAdded)</td>
+                </tr>
+                <tr>
+                    <td><label>Ngày cập nhật</label></td>
+                    <td>@Html.DisplayFor(model => model.DateUpdated)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID_Employees }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>
+

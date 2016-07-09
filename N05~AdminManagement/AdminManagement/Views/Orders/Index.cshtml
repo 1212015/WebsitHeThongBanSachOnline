@@ -1,0 +1,85 @@
+﻿@model IEnumerable<AdminManagement.Models.Order>
+
+@{
+    ViewBag.Title = "Quản Lý Đơn Đặt Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="text-align:right"><a href="~/Orders/Create" class="btn btn-primary btn-rect">Tạo đơn hàng mới</a></div>
+<div style="text-align:right"><a href="~/Orders/CreateDetail" class="btn btn-primary btn-rect">Tạo chi tiết đơn hàng</a></div>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Danh sách đơn đặt hàng
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive" id="table-orders">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th style="vertical-align:middle; text-align:center">
+                            Mã ĐH
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Tên người nhận
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Điện thoại người nhận
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Địa chỉ người nhận
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                             Tên người dùng
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Tên nhân viên
+                        </th>
+                        <th style="vertical-align:middle; text-align:center">
+                            Trạng thái
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="vertical-align:middle; text-align:center">
+                              
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.ID_Orders)
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.ShipName)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.ShipPhone)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.ShipAddress)          
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.User.FirstName)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                            </td>
+                            <td style="vertical-align:middle; text-align:center">
+                                @Html.DisplayFor(modelItem => item.OrderStatus.Name)
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ID_Orders }, new { @style = "width:7em", @class = "btn btn-success btn-rect" }) <br />
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.ID_Orders }, new { @style = "width:7em", @class = "btn btn-info btn-rect" }) <br />
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="618165b3c96b4dbdab2f8438991a3e54" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="OnlineSaleModel.Department" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Discount" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Employee" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Grade" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.OfferDetail" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Offer" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.OfferStatus" Width="1.5" PointX="1.5" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.OrderDetail" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Order" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.OrderStatus" Width="1.5" PointX="3" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.PaymentMethod" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Payment" Width="1.5" PointX="10.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.PaymentStatus" Width="1.5" PointX="8.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.ProductCategoriesRoot" Width="1.5" PointX="1.5" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.ProductCategoriesSub" Width="1.5" PointX="1.5" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Product" Width="1.5" PointX="0.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.ProductStatus" Width="1.5" PointX="1.5" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.UserCategory" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.User" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSaleModel.UserStatus" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Departments_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Employees_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Discounts_UserCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Orders_Discounts" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Employees_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Orders_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_OfferDetails_Offers" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_OfferDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_OfferDetails_UserCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Offers_OfferStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Orders_OrderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Payments_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Payments_PaymentMethods" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Payments_PaymentStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_ProductCategoriesSub_ProductCategoriesRoot" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Products_ProductCategoriesRoot" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Products_ProductCategoriesSub" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Products_ProductStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Users_UserCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Users_UserStatuses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Topic" Width="1.5" PointX="5.25" PointY="16.625" />
+        <EntityTypeShape EntityType="OnlineSaleModel.TopicDetail" Width="1.5" PointX="7.5" PointY="18.75" />
+        <EntityTypeShape EntityType="OnlineSaleModel.TopicStatus" Width="1.5" PointX="3" PointY="28" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Topic_TopicStatuses" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Topic_Users" />
+        <AssociationConnector Association="OnlineSaleModel.FK_TopicDetails_Topic" />
+        <EntityTypeShape EntityType="OnlineSaleModel.BookShelf" Width="1.5" PointX="8.25" PointY="23.125" />
+        <EntityTypeShape EntityType="OnlineSaleModel.ClassifyOwn" Width="1.5" PointX="5.25" PointY="26.375" />
+        <EntityTypeShape EntityType="OnlineSaleModel.ClassifyOwnDetail" Width="1.5" PointX="8.25" PointY="26" />
+        <AssociationConnector Association="OnlineSaleModel.FK__BookShelv__ID_Pr__4BAC3F29" />
+        <AssociationConnector Association="OnlineSaleModel.FK__BookShelv__ID_Us__4AB81AF0" />
+        <AssociationConnector Association="OnlineSaleModel.FK__ClassifyO__ID_Us__440B1D61" />
+        <AssociationConnector Association="OnlineSaleModel.FK__ClassifyO__ID_Pr__47DBAE45" />
+        <AssociationConnector Association="OnlineSaleModel.FK__ClassifyO__ID_Us__46E78A0C" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Comment" Width="1.5" PointX="5.25" PointY="22" />
+        <AssociationConnector Association="OnlineSaleModel.FK__Comment__ID_Prod__412EB0B6" />
+        <AssociationConnector Association="OnlineSaleModel.FK__Comment__ID_Prod__4F7CD00D" />
+        <AssociationConnector Association="OnlineSaleModel.FK__Comment__ID_User__403A8C7D" />
+        <AssociationConnector Association="OnlineSaleModel.FK__Comment__ID_User__5070F446" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Card" Width="1.5" PointX="12.75" PointY="13" />
+        <EntityTypeShape EntityType="OnlineSaleModel.Cash" Width="1.5" PointX="12.75" PointY="10.25" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Cards_Payments" />
+        <AssociationConnector Association="OnlineSaleModel.FK_Cash_Payments" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

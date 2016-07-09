@@ -1,0 +1,51 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Users> users = ViewBag.users;
+}
+
+<div class="container">
+    <div class="row">
+        <div style="text-align:right"><a href="~/Users/Create" class="btn btn-primary btn-rect">Tạo khách hàng mới</a></div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align:middle; text-align:center">Mã Khách Hàng</th>
+                                <th style="vertical-align:middle; text-align:center">Email</th>
+                                <th style="vertical-align:middle; text-align:center">Họ</th>
+                                <th style="vertical-align:middle; text-align:center">Tên</th>
+                                <th style="vertical-align:middle; text-align:center">Giới Tính</th>
+                                <th style="vertical-align:middle; text-align:center">Loại Khách Hàng</th>
+                                <th style="vertical-align:middle; text-align:center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Users i in users)
+                            {
+                                <tr>
+                                    <td style="vertical-align:middle; text-align:center">@i.ID_Users</td>
+                                    <td style="vertical-align:middle">@i.Email</td>
+                                    <td style="vertical-align:middle">@i.LastName</td>
+                                    <td style="vertical-align:middle">@i.Firstname</td>
+                                    <td style="vertical-align:middle; text-align:center">@i.Gender</td>
+                                    <td style="vertical-align:middle; text-align:center">@i.CategoryName</td>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = i.ID_Users }, new { @class = "btn btn-success btn-rect", @style = "width:8em" }) <br/>
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = i.ID_Users }, new { @class = "btn btn-warning btn-rect", @style = "width:8em" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

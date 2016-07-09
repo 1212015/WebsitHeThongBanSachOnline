@@ -1,0 +1,69 @@
+﻿@model AdminManagement.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Chi tiết thông tin khách hàng</h3>
+<hr />
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td style="vertical-align:middle; width:20%"><label>Email</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Password</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Password)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Họ</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.FirstName)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Tên</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.LastName)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Giới tính</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Gender)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Ngày sinh</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Birthday)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Số ĐT</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Phone)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Địa chỉ</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Address)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Điểm tích lũy</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Point)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Loại khách hàng</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.UserCategory.Name)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Trạng thái</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.UserStatus.Name)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Ngày thêm vào</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateAdded)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle"><label>Ngày cập nhật</label></td>
+            <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateUpdated)</td>
+        </tr>
+    </table>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID_Users }, new { @class = "btn btn-warning", @style = "width:7em" })
+        @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-danger", @style = "width:7em" })
+    </p>
+</div>

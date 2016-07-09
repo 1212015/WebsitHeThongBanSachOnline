@@ -1,0 +1,113 @@
+﻿@model AdminManagement.Models.Product
+
+@{
+    ViewBag.Title = "Xem chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Chi tiết sản phẩm</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <td style="vertical-align:middle; width:20%"><label>Mã SP</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.ID_Products)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Tên SP</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Giá</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Price)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Phân loại cha</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.ProductCategoriesRoot.Name)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Phân loại con</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.ProductCategoriesSub.Name)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Hình ảnh</label></td>
+                    <td style="vertical-align:middle"><img src="~/Content/product/img/@Model.Image" height="256" width="172" /></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Trạng thái</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.ProductStatus.Name)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Mô tả chi tiết</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Detail)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Mô tả ngắn</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.ShortDetail)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Mã vạch</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.BarCode)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Tiêu đề</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Title)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Tác giả (sách)</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Author)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Ca sĩ (dvd)</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Artist)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Năm phát hành</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Year)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Công ty phát hành</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Company)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Nhà xuất bản</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Publisher)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Kích thước</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Size)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Số trang</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Pages)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Vị trí lưu kho</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Location)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Số lượng tồn</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Quantity)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Số lượt xem</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.Count)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Ngày tạo</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateAdded)</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:middle"><label>Ngày cập nhật</label></td>
+                    <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateUpdated)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID_Products }, new { @class = "btn btn-danger", @style = "width:7em" })
+        @Html.ActionLink("Trở lại", "Index", new { }, new { @class = "btn btn-primary", @style = "width:7em" })
+    </p>
+</div>

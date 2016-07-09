@@ -1,0 +1,37 @@
+﻿@model AdminManagement.Models.ProductCategoriesRoot
+
+@{
+    ViewBag.Title = "Thay đổi thuộc tính loại sản phẩm cha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Chỉnh sửa loại sản phẩm cha</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID_ProductCategoriesRoot)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên loại sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.DateAdded)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-warning" style="width:6em" />
+                @Html.ActionLink("Hủy bỏ", "Index", new { }, new { @class = "btn btn-danger", @style = "width:7em" })
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,57 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "Quản lý giảm giá";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Discounts> discounts = ViewBag.discounts;
+}
+
+<div class="container">
+    <div class="row">
+        <span style="float:right">@Html.ActionLink("Tạo mức giảm giá", "Create", null, new { @class = "btn btn-primary btn-rect", @style = "width:12em" })</span>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>Danh sách tập khách hàng giảm giá</span>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive" id="table-discount">
+                    <table class="table table-bordered table-hover table-striped" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align:middle; text-align:center">Mã Giảm Giá</th>
+                                <th style="vertical-align:middle; text-align:center">Mã Loại Khách Hàng</th>
+                                <th style="vertical-align:middle; text-align:center">Tên Loại Khách Hàng</th>
+                                <th style="vertical-align:middle; text-align:center">Mức Giảm Giá</th>
+                                <th style="vertical-align:middle; text-align:center">Điểm Tối Thiểu</th>
+                                <th style="vertical-align:middle; text-align:center">Ngày Tạo</th>
+                                <th style="vertical-align:middle; text-align:center">Ngày Cập Nhật</th>
+                                <th style="vertical-align:middle; text-align:center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Discounts d in discounts)
+                            {
+                                <tr>
+                                    <td style="vertical-align:middle; text-align:center">@d.ID_Discounts</td>
+                                    <td style="vertical-align:middle; text-align:center">@d.UserCategoryID</td>
+                                    <td style="vertical-align:middle">@d.UserCategoryName</td>
+                                    <td style="vertical-align:middle; text-align:center">@d.Discount</td>
+                                    <td style="vertical-align:middle; text-align:center">@d.MinPoint</td>
+                                    <td style="vertical-align:middle; text-align:center">@d.DateAdded</td>
+                                    <td style="vertical-align:middle; text-align:center">@d.DateUpdated</td>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Ajax.ActionLink("Xóa", "Delete", new { id = d.ID_Discounts }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-discount" }, new { @class = "btn btn-danger btn-rect", @style = "width:11em" }) <br />
+                                        @Html.ActionLink("Xem tập khách hàng", "Index", "Users", new { id = d.UserCategoryID }, new { @class = "btn btn-success btn-rect", @style = "width:11em" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

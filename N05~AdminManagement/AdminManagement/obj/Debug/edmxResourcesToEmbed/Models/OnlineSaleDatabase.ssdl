@@ -1,0 +1,848 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineSaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineSale.dbo.Cards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Cards">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+      <PropertyRef Name="CardNumber" />
+      <PropertyRef Name="CSC" />
+      <PropertyRef Name="ExpiryDate" />
+      <PropertyRef Name="DateAdded" />
+      <PropertyRef Name="DateUpdated" />
+    </Key>
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="CardNumber" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="CSC" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="ExpiryDate" Type="date" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineSale.dbo.Cash' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Cash">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="DateAdded" />
+      <PropertyRef Name="DateUpdated" />
+    </Key>
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="ID_Users" />
+      <PropertyRef Name="ID_Product" />
+      <PropertyRef Name="ID_Comment" />
+    </Key>
+    <Property Name="ID_Users" Type="int" Nullable="false" />
+    <Property Name="ID_Product" Type="int" Nullable="false" />
+    <Property Name="Content" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="ID_Comment" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="ID_Departments" />
+    </Key>
+    <Property Name="ID_Departments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="ManagerID" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discounts">
+    <Key>
+      <PropertyRef Name="ID_Discounts" />
+    </Key>
+    <Property Name="ID_Discounts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCategoryID" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="float" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID_Employees" />
+    </Key>
+    <Property Name="ID_Employees" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IDNo" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="GradeID" Type="int" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="ID_Grades" />
+    </Key>
+    <Property Name="ID_Grades" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OfferDetails">
+    <Key>
+      <PropertyRef Name="ID_OfferDetails" />
+    </Key>
+    <Property Name="ID_OfferDetails" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OfferID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="UserCategoryID" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="float" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Offers">
+    <Key>
+      <PropertyRef Name="ID_Offers" />
+    </Key>
+    <Property Name="ID_Offers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OfferStatuses">
+    <Key>
+      <PropertyRef Name="ID_OfferStatuses" />
+    </Key>
+    <Property Name="ID_OfferStatuses" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="ID_OrderDetails" />
+    </Key>
+    <Property Name="ID_OrderDetails" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="ID_Orders" />
+    </Key>
+    <Property Name="ID_Orders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="ShipName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShipAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShipPhone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="ShipDate" Type="date" Nullable="false" />
+    <Property Name="DiscountID" Type="int" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderStatuses">
+    <Key>
+      <PropertyRef Name="ID_OrderStatuses" />
+    </Key>
+    <Property Name="ID_OrderStatuses" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentMethods">
+    <Key>
+      <PropertyRef Name="ID_PaymentMethods" />
+    </Key>
+    <Property Name="ID_PaymentMethods" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="ID_Payments" />
+    </Key>
+    <Property Name="ID_Payments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="PaymentMethodID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentStatuses">
+    <Key>
+      <PropertyRef Name="ID_PaymentStatuses" />
+    </Key>
+    <Property Name="ID_PaymentStatuses" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCategoriesRoot">
+    <Key>
+      <PropertyRef Name="ID_ProductCategoriesRoot" />
+    </Key>
+    <Property Name="ID_ProductCategoriesRoot" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCategoriesSub">
+    <Key>
+      <PropertyRef Name="ID_ProductCategoriesSub" />
+    </Key>
+    <Property Name="ID_ProductCategoriesSub" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Detail" Type="ntext" Nullable="false" />
+    <Property Name="ShortDetail" Type="ntext" Nullable="false" />
+    <Property Name="Image" Type="nchar" MaxLength="50" />
+    <Property Name="RID" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID_Products" />
+    </Key>
+    <Property Name="ID_Products" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="CategoryRID" Type="int" Nullable="false" />
+    <Property Name="CategorySID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nchar" MaxLength="50" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Detail" Type="ntext" Nullable="false" />
+    <Property Name="ShortDetail" Type="ntext" Nullable="false" />
+    <Property Name="BarCode" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="50" />
+    <Property Name="Artist" Type="nvarchar" MaxLength="50" />
+    <Property Name="Year" Type="char" MaxLength="4" />
+    <Property Name="Company" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Publisher" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size" Type="nchar" MaxLength="10" />
+    <Property Name="Pages" Type="nchar" MaxLength="4" />
+    <Property Name="Location" Type="ntext" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductStatuses">
+    <Key>
+      <PropertyRef Name="ID_ProductStatuses" />
+    </Key>
+    <Property Name="ID_ProductStatuses" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="ID_Topic" />
+    </Key>
+    <Property Name="ID_Topic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TopicDetails">
+    <Key>
+      <PropertyRef Name="ID_TopicDetails" />
+    </Key>
+    <Property Name="ID_TopicDetails" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TopicID" Type="int" Nullable="false" />
+    <Property Name="Detail" Type="ntext" Nullable="false" />
+    <Property Name="ShortDetail" Type="ntext" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TopicStatuses">
+    <Key>
+      <PropertyRef Name="ID_TopicStatuses" />
+    </Key>
+    <Property Name="ID_TopicStatuses" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserCategories">
+    <Key>
+      <PropertyRef Name="ID_UserCategories" />
+    </Key>
+    <Property Name="ID_UserCategories" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MinPoint" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID_Users" />
+    </Key>
+    <Property Name="ID_Users" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Point" Type="int" Nullable="false" />
+    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserStatuses">
+    <Key>
+      <PropertyRef Name="ID_UserStatuses" />
+    </Key>
+    <Property Name="ID_UserStatuses" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAdded" Type="smalldatetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Comment__ID_Prod__3F466844">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID_Products" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__ID_User__3E52440B">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="ID_Users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cards_Payments">
+    <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+    <End Role="Cards" Type="Self.Cards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments">
+        <PropertyRef Name="ID_Payments" />
+      </Principal>
+      <Dependent Role="Cards">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cash_Payments">
+    <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+    <End Role="Cash" Type="Self.Cash" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments">
+        <PropertyRef Name="ID_Payments" />
+      </Principal>
+      <Dependent Role="Cash">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departments_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="ID_Employees" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Discounts_UserCategories">
+    <End Role="UserCategories" Type="Self.UserCategories" Multiplicity="1" />
+    <End Role="Discounts" Type="Self.Discounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategories">
+        <PropertyRef Name="ID_UserCategories" />
+      </Principal>
+      <Dependent Role="Discounts">
+        <PropertyRef Name="UserCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="ID_Departments" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Grades">
+    <End Role="Grades" Type="Self.Grades" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="ID_Grades" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="GradeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfferDetails_Offers">
+    <End Role="Offers" Type="Self.Offers" Multiplicity="1" />
+    <End Role="OfferDetails" Type="Self.OfferDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offers">
+        <PropertyRef Name="ID_Offers" />
+      </Principal>
+      <Dependent Role="OfferDetails">
+        <PropertyRef Name="OfferID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfferDetails_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="OfferDetails" Type="Self.OfferDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID_Products" />
+      </Principal>
+      <Dependent Role="OfferDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OfferDetails_UserCategories">
+    <End Role="UserCategories" Type="Self.UserCategories" Multiplicity="1" />
+    <End Role="OfferDetails" Type="Self.OfferDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategories">
+        <PropertyRef Name="ID_UserCategories" />
+      </Principal>
+      <Dependent Role="OfferDetails">
+        <PropertyRef Name="UserCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Offers_OfferStatuses">
+    <End Role="OfferStatuses" Type="Self.OfferStatuses" Multiplicity="1" />
+    <End Role="Offers" Type="Self.Offers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OfferStatuses">
+        <PropertyRef Name="ID_OfferStatuses" />
+      </Principal>
+      <Dependent Role="Offers">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_Orders" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID_Products" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Discounts">
+    <End Role="Discounts" Type="Self.Discounts" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discounts">
+        <PropertyRef Name="ID_Discounts" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="DiscountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="ID_Employees" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_OrderStatuses">
+    <End Role="OrderStatuses" Type="Self.OrderStatuses" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatuses">
+        <PropertyRef Name="ID_OrderStatuses" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_Orders" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_PaymentMethods">
+    <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethods">
+        <PropertyRef Name="ID_PaymentMethods" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="PaymentMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_PaymentStatuses">
+    <End Role="PaymentStatuses" Type="Self.PaymentStatuses" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentStatuses">
+        <PropertyRef Name="ID_PaymentStatuses" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategoriesSub_ProductCategoriesRoot">
+    <End Role="ProductCategoriesRoot" Type="Self.ProductCategoriesRoot" Multiplicity="1" />
+    <End Role="ProductCategoriesSub" Type="Self.ProductCategoriesSub" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategoriesRoot">
+        <PropertyRef Name="ID_ProductCategoriesRoot" />
+      </Principal>
+      <Dependent Role="ProductCategoriesSub">
+        <PropertyRef Name="RID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductCategoriesRoot">
+    <End Role="ProductCategoriesRoot" Type="Self.ProductCategoriesRoot" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategoriesRoot">
+        <PropertyRef Name="ID_ProductCategoriesRoot" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductCategoriesSub">
+    <End Role="ProductCategoriesSub" Type="Self.ProductCategoriesSub" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategoriesSub">
+        <PropertyRef Name="ID_ProductCategoriesSub" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategorySID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductStatuses">
+    <End Role="ProductStatuses" Type="Self.ProductStatuses" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductStatuses">
+        <PropertyRef Name="ID_ProductStatuses" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topic_TopicStatuses">
+    <End Role="TopicStatuses" Type="Self.TopicStatuses" Multiplicity="1" />
+    <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopicStatuses">
+        <PropertyRef Name="ID_TopicStatuses" />
+      </Principal>
+      <Dependent Role="Topic">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topic_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Users" />
+      </Principal>
+      <Dependent Role="Topic">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TopicDetails_Topic">
+    <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+    <End Role="TopicDetails" Type="Self.TopicDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="ID_Topic" />
+      </Principal>
+      <Dependent Role="TopicDetails">
+        <PropertyRef Name="TopicID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserCategories">
+    <End Role="UserCategories" Type="Self.UserCategories" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategories">
+        <PropertyRef Name="ID_UserCategories" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserStatuses">
+    <End Role="UserStatuses" Type="Self.UserStatuses" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserStatuses">
+        <PropertyRef Name="ID_UserStatuses" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineSaleModelStoreContainer">
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grades" EntityType="Self.Grades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OfferDetails" EntityType="Self.OfferDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OfferStatuses" EntityType="Self.OfferStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderStatuses" EntityType="Self.OrderStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentStatuses" EntityType="Self.PaymentStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategoriesRoot" EntityType="Self.ProductCategoriesRoot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategoriesSub" EntityType="Self.ProductCategoriesSub" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductStatuses" EntityType="Self.ProductStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TopicDetails" EntityType="Self.TopicDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TopicStatuses" EntityType="Self.TopicStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserCategories" EntityType="Self.UserCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserStatuses" EntityType="Self.UserStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cards" EntityType="Self.Cards" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Cards].[PaymentID] AS [PaymentID], 
+    [Cards].[CardNumber] AS [CardNumber], 
+    [Cards].[CSC] AS [CSC], 
+    [Cards].[ExpiryDate] AS [ExpiryDate], 
+    [Cards].[DateAdded] AS [DateAdded], 
+    [Cards].[DateUpdated] AS [DateUpdated]
+    FROM [dbo].[Cards] AS [Cards]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Cash" EntityType="Self.Cash" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Cash].[PaymentID] AS [PaymentID], 
+    [Cash].[Address] AS [Address], 
+    [Cash].[DateAdded] AS [DateAdded], 
+    [Cash].[DateUpdated] AS [DateUpdated]
+    FROM [dbo].[Cash] AS [Cash]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Comment__ID_Prod__3F466844" Association="Self.FK__Comment__ID_Prod__3F466844">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment__ID_User__3E52440B" Association="Self.FK__Comment__ID_User__3E52440B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cards_Payments" Association="Self.FK_Cards_Payments">
+      <End Role="Payments" EntitySet="Payments" />
+      <End Role="Cards" EntitySet="Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cash_Payments" Association="Self.FK_Cash_Payments">
+      <End Role="Payments" EntitySet="Payments" />
+      <End Role="Cash" EntitySet="Cash" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departments_Employees" Association="Self.FK_Departments_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Discounts_UserCategories" Association="Self.FK_Discounts_UserCategories">
+      <End Role="UserCategories" EntitySet="UserCategories" />
+      <End Role="Discounts" EntitySet="Discounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Departments" Association="Self.FK_Employees_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Grades" Association="Self.FK_Employees_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfferDetails_Offers" Association="Self.FK_OfferDetails_Offers">
+      <End Role="Offers" EntitySet="Offers" />
+      <End Role="OfferDetails" EntitySet="OfferDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfferDetails_Products" Association="Self.FK_OfferDetails_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OfferDetails" EntitySet="OfferDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OfferDetails_UserCategories" Association="Self.FK_OfferDetails_UserCategories">
+      <End Role="UserCategories" EntitySet="UserCategories" />
+      <End Role="OfferDetails" EntitySet="OfferDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offers_OfferStatuses" Association="Self.FK_Offers_OfferStatuses">
+      <End Role="OfferStatuses" EntitySet="OfferStatuses" />
+      <End Role="Offers" EntitySet="Offers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Discounts" Association="Self.FK_Orders_Discounts">
+      <End Role="Discounts" EntitySet="Discounts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Employees" Association="Self.FK_Orders_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_OrderStatuses" Association="Self.FK_Orders_OrderStatuses">
+      <End Role="OrderStatuses" EntitySet="OrderStatuses" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Orders" Association="Self.FK_Payments_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_PaymentMethods" Association="Self.FK_Payments_PaymentMethods">
+      <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_PaymentStatuses" Association="Self.FK_Payments_PaymentStatuses">
+      <End Role="PaymentStatuses" EntitySet="PaymentStatuses" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoriesSub_ProductCategoriesRoot" Association="Self.FK_ProductCategoriesSub_ProductCategoriesRoot">
+      <End Role="ProductCategoriesRoot" EntitySet="ProductCategoriesRoot" />
+      <End Role="ProductCategoriesSub" EntitySet="ProductCategoriesSub" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductCategoriesRoot" Association="Self.FK_Products_ProductCategoriesRoot">
+      <End Role="ProductCategoriesRoot" EntitySet="ProductCategoriesRoot" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductCategoriesSub" Association="Self.FK_Products_ProductCategoriesSub">
+      <End Role="ProductCategoriesSub" EntitySet="ProductCategoriesSub" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductStatuses" Association="Self.FK_Products_ProductStatuses">
+      <End Role="ProductStatuses" EntitySet="ProductStatuses" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topic_TopicStatuses" Association="Self.FK_Topic_TopicStatuses">
+      <End Role="TopicStatuses" EntitySet="TopicStatuses" />
+      <End Role="Topic" EntitySet="Topic" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topic_Users" Association="Self.FK_Topic_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Topic" EntitySet="Topic" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TopicDetails_Topic" Association="Self.FK_TopicDetails_Topic">
+      <End Role="Topic" EntitySet="Topic" />
+      <End Role="TopicDetails" EntitySet="TopicDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserCategories" Association="Self.FK_Users_UserCategories">
+      <End Role="UserCategories" EntitySet="UserCategories" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserStatuses" Association="Self.FK_Users_UserStatuses">
+      <End Role="UserStatuses" EntitySet="UserStatuses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

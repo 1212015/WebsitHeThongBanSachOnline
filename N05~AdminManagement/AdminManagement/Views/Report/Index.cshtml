@@ -1,0 +1,390 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "Thống kê doanh thu bán hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int? id = ViewBag.id;
+    List<Report> report = ViewBag.report;
+    string msg = ViewBag.msg;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            @Ajax.ActionLink("Theo ngày", "Index", new { id = 1 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+            @Ajax.ActionLink("Theo tuần", "Index", new { id = 2 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+            @Ajax.ActionLink("Theo tháng", "Index", new { id = 3 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+            @Ajax.ActionLink("Theo quý", "Index", new { id = 4 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+            @Ajax.ActionLink("Theo năm", "Index", new { id = 5 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+            @Ajax.ActionLink("Tùy chọn", "Index", new { id = 6 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "choice" }, new { @class = "btn btn-primary", @style = "width:7em" })
+        </div>
+
+        <div class="col-lg-12" id="choice">
+            @if (id == 1)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showreport" }))
+                {
+                    <input type="hidden" name="id" value="1" />
+                    <table>
+                        <tr>
+                            <td><label>Nhập ngày &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td>
+                                <select class="form-control" name="day">
+                                    @for (int i = 1; i <= 31; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:10px"><label>Nhập tháng &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td style="padding-top:10px">
+                                <select class="form-control" name="month">
+                                    @for (int i = 1; i <= 12; i++)
+                                    {
+                                        <option value="@i">Tháng @i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:10px"><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td style="padding-top:10px">
+                                <select class="form-control" name="year">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+
+            @if (id == 2)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showreport" }))
+                {
+                    <input type="hidden" name="id" value="2" />
+                    <table>
+                        <tr>
+                            <td><label>Nhập tuần &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td><input class="form-control" type="text" name="week" required="required" /></td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:10px"><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td style="padding-top:10px">
+                                <select class="form-control" name="year">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+
+            @if (id == 3)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showreport" }))
+                {
+                    <input type="hidden" name="id" value="3" />
+                    <table>
+                        <tr>
+                            <td><label>Nhập tháng &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td>
+                                <select class="form-control" name="month">
+                                    @for (int i = 1; i <= 12; i++)
+                                    {
+                                        <option value="@i">Tháng @i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:10px"><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td style="padding-top:10px">
+                                <select class="form-control" name="year">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+
+            @if (id == 4)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showreport" }))
+                {
+                    <input type="hidden" name="id" value="4" />
+                    <table>
+                        <tr>
+                            <td><label>Nhập quý &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td>
+                                <select class="form-control" name="quarter">
+                                    @for (int i = 1; i <= 4; i++)
+                                    {
+                                        <option value="@i">Quý @i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:10px"><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td style="padding-top:10px">
+                                <select class="form-control" name="year">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+
+            @if (id == 5)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showreport" }))
+                {
+                    <input type="hidden" name="id" value="5" />
+                    <table>
+                        <tr>
+                            <td><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                            <td>
+                                <select class="form-control" name="year">
+                                    @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                        </tr>
+                    </table>
+                }
+            }
+
+            @if (id == 6)
+            {
+                <hr />
+                using (Ajax.BeginForm("Index", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "showreport" }))
+                {
+                    <input type="hidden" name="id" value="6" />
+                    <div class="col-lg-4">
+                        <h4>Từ ngày:</h4>
+                        <table>
+                            <tr>
+                                <td><label>Nhập ngày &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                                <td>
+                                    <select class="form-control" name="day">
+                                        @for (int i = 1; i <= 31; i++)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:10px"><label>Nhập tháng &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                                <td style="padding-top:10px">
+                                    <select class="form-control" name="month">
+                                        @for (int i = 1; i <= 12; i++)
+                                        {
+                                            <option value="@i">Tháng @i</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:10px"><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                                <td style="padding-top:10px">
+                                    <select class="form-control" name="year">
+                                        @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <h4>Đến ngày:</h4>
+                        <table>
+                            <tr>
+                                <td><label>Nhập ngày &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                                <td>
+                                    <select class="form-control" name="day2">
+                                        @for (int i = 1; i <= 31; i++)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:10px"><label>Nhập tháng &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                                <td style="padding-top:10px">
+                                    <select class="form-control" name="month2">
+                                        @for (int i = 1; i <= 12; i++)
+                                        {
+                                            <option value="@i">Tháng @i</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:10px"><label>Nhập năm &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                                <td style="padding-top:10px">
+                                    <select class="form-control" name="year2">
+                                        @for (int i = DateTime.Now.Year; i > 2000; i--)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align:center; padding-top:10px"><button type="submit" class="btn btn-danger" style="width:7em">OK</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" id="showreport">
+            @if (msg != null)
+            {
+                <hr />
+                <h3>@msg</h3>
+            }
+            @if (report.Count != 0)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-lg-12">
+                        @Html.ActionLink("Xuất ra tập tin", "ExportReport", new { id = id, day = ViewBag.day, week = ViewBag.week, month = ViewBag.month, quarter = ViewBag.quarter, year = ViewBag.year, day2 = ViewBag.day2, month2 = ViewBag.month2, year2 = ViewBag.year2 }, new { @class = "btn btn-success btn-rect", @style = "float:right; margin-bottom:5px" })
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @if (id == 1)
+                        {
+                            <span>Doanh thu ngày @ViewBag.day tháng @ViewBag.month năm @ViewBag.year</span>
+                        }
+                        @if (id == 2)
+                        {
+                            <span>Doanh thu tuần @ViewBag.week năm @ViewBag.year</span>
+                        }
+                        @if (id == 3)
+                        {
+                            <span>Doanh thu tháng @ViewBag.month năm @ViewBag.year</span>
+                        }
+                        @if (id == 4)
+                        {
+                            <span>Doanh thu quý @ViewBag.quarter năm @ViewBag.year</span>
+                        }
+                        @if (id == 5)
+                        {
+                            <span>Doanh thu năm @ViewBag.year</span>
+                        }
+                        @if (id == 6)
+                        {
+                            <span>Doanh thu từ ngày @ViewBag.day tháng @ViewBag.month năm @ViewBag.year đến ngày @ViewBag.day2 tháng @ViewBag.month2 năm @ViewBag.year2</span>
+                        }
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center">Mã Sản Phẩm</th>
+                                        <th style="text-align:center">Tên Sản Phẩm</th>
+                                        <th style="text-align:center">Số Lượng Bán</th>
+                                        <th style="text-align:center">Doanh Thu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int total = 0; }
+                                    @foreach (Report i in report)
+                                    {
+                                        <tr>
+                                            <td style="text-align:center">@i.MaSP</td>
+                                            <td style="text-align:center">@Html.ActionLink(i.TenSP, "Details", "Products", new { id = i.MaSP }, null)</td>
+                                            <td style="text-align:center">@i.SLBan</td>
+                                            @if (id == 1)
+                                            {
+                                                <td style="text-align:center">@Html.ActionLink(i.DoanhThu.ToString(), "CheckReport", new { id = id, idSP = i.MaSP, day = ViewBag.day, month = ViewBag.month, year = ViewBag.year })</td>
+                                            }
+                                            @if (id == 2)
+                                            {
+                                                <td style="text-align:center">@Html.ActionLink(i.DoanhThu.ToString(), "CheckReport", new { id = id, idSP = i.MaSP, week = ViewBag.week, year = ViewBag.year })</td>
+                                            }
+                                            @if (id == 3)
+                                            {
+                                                <td style="text-align:center">@Html.ActionLink(i.DoanhThu.ToString(), "CheckReport", new { id = id, idSP = i.MaSP, month = ViewBag.month, year = ViewBag.year })</td>
+                                            }
+                                            @if (id == 4)
+                                            {
+                                                <td style="text-align:center">@Html.ActionLink(i.DoanhThu.ToString(), "CheckReport", new { id = id, idSP = i.MaSP, quarter = ViewBag.quarter, year = ViewBag.year })</td>
+                                            }
+                                            @if (id == 5)
+                                            {
+                                                <td style="text-align:center">@Html.ActionLink(i.DoanhThu.ToString(), "CheckReport", new { id = id, idSP = i.MaSP, year = ViewBag.year })</td>
+                                            }
+                                            @if (id == 6)
+                                            {
+                                                <td style="text-align:center">@Html.ActionLink(i.DoanhThu.ToString(), "CheckReport", new { id = id, idSP = i.MaSP, day = ViewBag.day, month = ViewBag.month, year = ViewBag.year, day2 = ViewBag.day2, month2 = ViewBag.month2, year2 = ViewBag.year2 })</td>
+                                            }
+                                        </tr>
+                                            total += i.DoanhThu;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr />
+                        <span style="float:right"><label>Tổng Cộng:</label><input class="form-control" style="text-align:right" disabled value="@total VND" /></span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

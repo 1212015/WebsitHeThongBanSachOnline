@@ -1,0 +1,119 @@
+﻿@using AdminManagement.Models;
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Offers> list = ViewBag.offer;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>Chi tiết hoạt động khuyến mãi</span>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+
+
+                                <th style="vertical-align:middle; text-align:center">
+                                    Mã Hoạt động
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Tên hoạt động
+                                </th>
+
+                                <th style="vertical-align:middle; text-align:center">
+                                    Ngày bắt đầu
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Ngày kết thúc
+                                </th>
+                                @*<th style="vertical-align:middle; text-align:center">mã chi tiết</th>*@
+
+                                <th style="vertical-align:middle; text-align:center">Tên sản phẩm</th>
+
+
+                                <th style="vertical-align:middle; text-align:center">% giảm giá</th>
+
+                                <th style="vertical-align:middle; text-align:center">Loại Khách hàng</th>
+
+                                <th style="vertical-align:middle; text-align:center">Trạng thái</th>
+
+                                <th style="vertical-align:middle; text-align:center">Ngày tạo</th>
+
+                                <th style="vertical-align:middle; text-align:center">Ngày cập nhật</th>
+
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (Offers i in list)
+                            {
+                                
+                                <tr>
+                                    @*<tr>
+                                        <th>Mã đơn hàng</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ID_Offers</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Mã sản phẩm</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.NameOffer</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Giá</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.StartDate</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Số lượng</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.EndDate</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Tên người nhận</th>*@
+                                    @*<td style="vertical-align:middle; text-align:center">@i.ID_OfferDetails</td>*@
+                                    @*</tr>
+                                        <tr>
+                                            <th>Địa chỉ</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ProductName</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>SĐT người nhận</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.Discount</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Ngày chuyển</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.UserCategoryName</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Mã KH</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.StatusName</td>
+                                    
+                                    <td style="vertical-align:middle; text-align:center">@i.DateAddedOfferDetail</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Ngày cập nhật</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.DateUpdatedOfferDetail</td>
+
+                                   
+                                </tr>
+                                
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+               
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Trở lại", "Index", new { }, new { @class = "btn btn-primary", @style = "width:7em" })
+</p>
+

@@ -1,0 +1,57 @@
+﻿@model AdminManagement.Models.ProductCategoriesSub
+
+@{
+    ViewBag.Title = "Xem chi tiết loại sản phẩm con";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Chi tiết loại sản phẩm con</h3>
+            <hr />
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align:middle; width:20%"><label>Mã loại</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.ID_ProductCategoriesSub)</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Tên loại</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Hình ảnh</label></td>
+                            <td style="vertical-align:middle"><img src="~/Content/categorysub/img/@Model.Image" alt="Hình ảnh" width="172" height="256" /></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Chi tiết</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.Detail)</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Chi tiết ngắn</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.ShortDetail)</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Tên loại cha</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.ProductCategoriesRoot.Name)</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Ngày tạo</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateAdded)</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle"><label>Ngày cập nhật</label></td>
+                            <td style="vertical-align:middle">@Html.DisplayFor(model => model.DateUpdated)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID_ProductCategoriesSub }, new { @class = "btn btn-danger", @style = "width:7em" })
+                @Html.ActionLink("Trở lại", "Index", new { }, new { @class = "btn btn-primary", @style = "width:7em" })
+            </p>
+        </div>
+    </div>
+</div>

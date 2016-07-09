@@ -1,0 +1,144 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Orders> list = ViewBag.order;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>Chi tiết hóa đơn</span>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+
+                                <th style="vertical-align:middle; text-align:center">
+                                    Mã đơn hàng
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Mã sản phẩm
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Giá
+                                </th>
+
+                                <th style="vertical-align:middle; text-align:center">
+                                    Số lượng
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Tên người nhận
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Địa chỉ
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    ĐT người nhận
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">Ngày chuyển</th>
+                                
+                                <th style="vertical-align:middle; text-align:center">Mã KH</th>
+
+                                <th style="vertical-align:middle; text-align:center">Mã giảm giá</th>
+
+                                <th style="vertical-align:middle; text-align:center">% giảm giá</th>
+
+                                <th style="vertical-align:middle; text-align:center">Phương thức thanh toán</th>
+
+                                <th style="vertical-align:middle; text-align:center">Ngày tạo</th>
+
+                                <th style="vertical-align:middle; text-align:center">Ngày cập nhật</th>
+
+                                <th style="vertical-align:middle; text-align:center">Thành tiền</th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            @{ double total = 0; double thanhtien = 0;}
+                            
+                            @foreach (Orders i in list)
+                            {
+                                total = (i.Price * i.Quantity * (1 - i.Discount / 100));
+                                <tr>
+                                    @*<tr>
+                                        <th>Mã đơn hàng</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.OrderID</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Mã sản phẩm</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ProductID</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Giá</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.Price</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Số lượng</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.Quantity</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Tên người nhận</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ShipName</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Địa chỉ</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ShipAddress</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>SĐT người nhận</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ShipPhone</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Ngày chuyển</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.ShipDate</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Mã KH</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.UserID</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Mã giảm giá</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.DiscountID</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>% giảm giá</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.Discount</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Phương thức thanh toán</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.Status</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Ngày tạo</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.DateAdded</td>
+                                    @*</tr>
+                                        <tr>
+                                            <th>Ngày cập nhật</th>*@
+                                    <td style="vertical-align:middle; text-align:center">@i.DateUpdated</td>
+                                    
+                                    <td style="vertical-align:middle; text-align:center">@total</td>
+                                </tr>
+                                thanhtien += total;
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <span style="float:right"><label>Tổng Cộng:</label><input class="form-control" style="text-align:right" disabled value="@thanhtien VND" /></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        <p>
+            @Html.ActionLink("Trở lại", "Index", new { }, new { @class = "btn btn-primary", @style = "width:7em" })
+        </p>
+
+
+
+

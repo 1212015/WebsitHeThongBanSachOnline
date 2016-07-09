@@ -1,0 +1,41 @@
+﻿@using AdminManagement.Models;
+@{
+    ViewBag.Title = "CheckReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<OrderDetail> orderdetails = ViewBag.checkorder;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align:middle; text-align:center">Mã Hóa Đơn</th>
+                                <th style="vertical-align:middle; text-align:center">Mã Chi Tiết HĐ</th>
+                                <th style="vertical-align:middle; text-align:center">Số Lượng Mua</th>
+                                <th style="vertical-align:middle; text-align:center">Giá</th>
+                                <th style="vertical-align:middle; text-align:center">Tổng Cộng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OrderDetail o in orderdetails)
+                            {
+                                int total = o.Quantity * o.Price;
+                                <tr>
+                                    <td style="vertical-align:middle; text-align:center">@o.OrderID</td>
+                                    <td style="vertical-align:middle; text-align:center">@o.ID_OrderDetails</td>
+                                    <td style="vertical-align:middle; text-align:center">@o.Quantity</td>
+                                    <td style="vertical-align:middle; text-align:center">@o.Price</td>
+                                    <td style="vertical-align:middle; text-align:center">@total</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

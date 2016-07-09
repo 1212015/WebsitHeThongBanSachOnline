@@ -1,0 +1,103 @@
+﻿@model IEnumerable<AdminManagement.Models.Employee>
+
+@{
+    ViewBag.Title = "Quản lý thông tin nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <span style="float:right">
+            @Html.ActionLink("Tạo mới thông tin nhân viên", "Create", null, new { @class = "btn btn-primary btn-rect" })
+        </span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>Thông tin nhân viên</span>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive" id="table-employee">
+                    <table class="table table-bordered table-hover table-striped" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align:middle; text-align:center">Mã NV</th>
+
+                                <th style="vertical-align:middle; text-align:center">
+                                    Tên
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Họ
+                                </th>
+
+                                <th style="vertical-align:middle; text-align:center">
+                                    Giới Tính
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Ngày Sinh
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Số ĐT
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Email
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Phòng Ban
+                                </th>
+                                <th style="vertical-align:middle; text-align:center">
+                                    Chức Vụ
+                                </th>
+                                <th style="vertical-align:middle; text-align:center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.ActionLink(item.ID_Employees.ToString(), "Details", new { id = item.ID_Employees })
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.DisplayFor(modelItem => item.Gender)
+                                    </td>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.DisplayFor(modelItem => item.Birthday)
+                                    </td>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+
+                                    <td style="vertical-align:middle">
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+
+                                    <td style="vertical-align:middle">
+                                        @Html.DisplayFor(modelItem => item.Department.Name)
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        @Html.DisplayFor(modelItem => item.Grade.Name)
+                                    </td>
+                                    <td style="vertical-align:middle; text-align:center">
+                                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ID_Employees }, new { @class = "btn btn-warning btn-rect", @style = "width:7em" }) <br />
+                                        @Ajax.ActionLink("Xóa", "Delete", new { id = item.ID_Employees }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-employee" }, new { @class = "btn btn-danger btn-rect", @style = "width:7em" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

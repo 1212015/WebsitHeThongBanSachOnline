@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/plugins/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/css/login.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/")admin/plugins/magic/magic.css" />
+    <!-- END GLOBAL STYLES-->
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="@Url.Content("~/Content/")admin/plugins/jquery-2.0.3.min.js"></script>
+    <script src="@Url.Content("~/Content/")admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/Content/")admin/js/login.js"></script>
+</body>
+</html>

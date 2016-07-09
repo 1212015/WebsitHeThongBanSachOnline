@@ -1,0 +1,64 @@
+﻿@model MvcSendMail.Models.ContactModel_PhanHoi
+@{
+    ViewBag.Title = "Xử Lý Phản Hồi";
+    <h2>Xử Lý Phản Hồi</h2>
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên của bạn</label>
+            <div class="col-md-10" style="margin-bottom:20px">
+                @Html.EditorFor(model => model.UserName, new { required = "required", htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Email người nhận</label>
+        <div class="col-md-10" style="margin-bottom:20px">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Chủ đề</label>
+        <div class="col-md-10" style="margin-bottom:20px">
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <label class="control-label col-md-2">Nội dung</label>
+        <div class="col-md-10" style="margin-bottom:20px">
+            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+        <input type="hidden" value="@ViewBag.id" name="id" />
+        <input type="hidden" value="@ViewBag.email" name="email" />
+        <input type="hidden" value="@ViewBag.status" name="status" />
+        
+            <div class="col-md-offset-2 col-md-10">
+
+
+
+                <input type="submit" value="Gửi" class="btn btn-primary" style="width:6em" />
+                @Html.ActionLink("Trở lại", "Index", "TopicDetails", new { }, new { @class = "btn btn-danger", @style = "width:7em" })
+            </div>
+        
+
+        }
+
+
